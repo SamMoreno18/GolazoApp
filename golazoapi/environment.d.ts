@@ -1,7 +1,14 @@
 declare global {
     namespace NodeJS {
       interface ProcessEnv {
-        DATABASE: string
+        DATABASE: string,
+        SMTPHOST: string,
+        SMTPUSER: string,
+        OAUTH2CLIENTID: string,
+        OAUTH2CLIENTSECRET: string,
+        OAUTH2REFRESHTOKEN: string,
+        OAUTH2ACCESSTOKEN: string,
+        DOMAIN: string
       }
     }
   }
