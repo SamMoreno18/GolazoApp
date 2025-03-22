@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "golazoapp",
-    "slug": "golazoapp",
+    "name": "golazo-app",
+    "slug": "golazo-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
