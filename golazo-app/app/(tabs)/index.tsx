@@ -8,7 +8,7 @@ const HomePage = () => {
 
     <View>
                 <Header />
-                <Text>Página principal</Text>
+             
             </View>
       {/* Header */}
       <View style={styles.header}>
@@ -106,7 +106,7 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#F8F9FA', padding: 20 },
+  container: { backgroundColor: '#1F7D53', padding: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
   logo: { fontSize: 24, fontWeight: 'bold', color: '#D72638' },
   profileContainer: { width: 40, height: 40 },
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
   subText: { fontSize: 16, color: '#6C757D' },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginTop: 20, textAlign: 'center' },
   liveGameContainer: { marginTop: 10, alignItems: 'center' },
-  liveGameCard: { backgroundColor: '#FFF', padding: 15, borderRadius: 10, alignItems: 'center', width: '80%' },
-  liveGameTitle: { fontSize: 18, fontWeight: 'bold', marginBottom: 5 },
-  score: { fontSize: 24, fontWeight: 'bold', marginVertical: 5 },
-  button: { backgroundColor: '#D72638', padding: 10, borderRadius: 5, marginTop: 10 },
+  liveGameCard: { backgroundColor: '#3A7D44', padding: 55, borderRadius: 10, alignItems: 'center', width: '80%' },
+  liveGameTitle: { fontSize: 32, fontWeight: 'bold', marginBottom: 5 },
+  score: { fontSize: 30, fontWeight: 'bold', marginVertical: 5 },
+  button: { backgroundColor: '#D72638', padding: 15, borderRadius: 5, marginTop: 10 },
   buttonSecondary: { backgroundColor: '#FFF', padding: 10, borderRadius: 5, marginTop: 10 },
   buttonText: { color: 'black', fontWeight: 'bold' },
   section: { marginTop: 20 },
