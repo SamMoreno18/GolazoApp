@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "white",
     paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingVertical: 50,
     height: 60,
     width: "100%",
     position: "absolute",
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: "bold",
-    color: "red",
+    color: "black",
   },
   rightSection: {
     flexDirection: "row",
