@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import Header from '../../components/Header';
 
 const HomePage = () => {
   return (
     <ScrollView style={styles.container}>
+
+    <View>
+                <Header />
+                <Text>Página principal</Text>
+            </View>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.logo}>golazo</Text>
@@ -118,7 +124,7 @@ const styles = StyleSheet.create({
   section: { marginTop: 20 },
   gameScroll: { marginTop: 10 },
   gameCardLarge: { 
-    backgroundColor: 'red', 
+    backgroundColor: '#DE3C4B', 
     paddingVertical: 100, 
     paddingHorizontal: 30, 
     borderRadius: 10, 
