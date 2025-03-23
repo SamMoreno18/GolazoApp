@@ -26,6 +26,7 @@
     "@nestjs/mongoose": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/schedule": "^5.0.1",
+    "@nestjs/swagger": "^11.0.7",
     "@types/nodemailer": "^6.4.17",
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
