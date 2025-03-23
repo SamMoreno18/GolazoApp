@@ -11,7 +11,6 @@ const HomePage = () => {
             </View>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.logo}>golazo</Text>
         <View style={styles.profileContainer}>
           <TouchableOpacity>
             <Image source={{ uri: 'https://via.placeholder.com/40' }} style={styles.profileImage} />
@@ -105,12 +104,11 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#1F7D53', padding: 20 },
+  container: { backgroundColor: '#FFF', padding: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
-  logo: { fontSize: 24, fontWeight: 'bold', color: '#D72638' },
   profileContainer: { width: 40, height: 40 },
   profileImage: { width: '100%', height: '100%', borderRadius: 20 },
-  welcomeText: { fontSize: 22, fontWeight: 'bold' },
+  welcomeText: { fontSize: 48, fontWeight: 'bold' },
   subText: { fontSize: 16, color: '#6C757D' },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginTop: 20, textAlign: 'center' },
   liveGameContainer: { marginTop: 10, alignItems: 'center' },
