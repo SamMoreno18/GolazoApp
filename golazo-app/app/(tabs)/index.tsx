@@ -8,7 +8,6 @@ const HomePage = () => {
 
     <View>
                 <Header />
-             
             </View>
       {/* Header */}
       <View style={styles.header}>
@@ -115,10 +114,10 @@ const styles = StyleSheet.create({
   subText: { fontSize: 16, color: '#6C757D' },
   sectionTitle: { fontSize: 18, fontWeight: 'bold', marginTop: 20, textAlign: 'center' },
   liveGameContainer: { marginTop: 10, alignItems: 'center' },
-  liveGameCard: { backgroundColor: '#3A7D44', padding: 55, borderRadius: 10, alignItems: 'center', width: '80%' },
+  liveGameCard: { backgroundColor: '#3A7D44', padding:55,borderRadius: 10, alignItems: 'center', width: '80%' },
   liveGameTitle: { fontSize: 32, fontWeight: 'bold', marginBottom: 5 },
-  score: { fontSize: 30, fontWeight: 'bold', marginVertical: 5 },
-  button: { backgroundColor: '#D72638', padding: 15, borderRadius: 5, marginTop: 10 },
+  score: { fontSize: 24, fontWeight: 'bold', marginVertical: 5 },
+  button: { backgroundColor: '#D72638', padding: 10, borderRadius: 5, marginTop: 10 },
   buttonSecondary: { backgroundColor: '#FFF', padding: 10, borderRadius: 5, marginTop: 10 },
   buttonText: { color: 'black', fontWeight: 'bold' },
   section: { marginTop: 20 },
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
   gameTime: { fontSize: 18, fontWeight: 'bold', marginBottom: 15 },
   gameTeams: { fontSize: 18, marginBottom: 20, textAlign: 'center' },
   recentGameCard: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#3A7D44',
     padding: 15,
     borderRadius: 10,
     marginVertical: 10,
