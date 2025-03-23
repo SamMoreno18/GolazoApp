@@ -21,10 +21,13 @@
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^4.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/mongoose": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/schedule": "^5.0.1",
     "@types/nodemailer": "^6.4.17",
+    "axios": "^1.8.4",
     "dotenv": "^16.4.7",
     "mongoose": "^8.12.1",
     "node-fetch": "^3.3.2",
