@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   liveGameCard: { backgroundColor: '#3A7D44', padding:55,borderRadius: 10, alignItems: 'center', width: '80%' },
   liveGameTitle: { fontSize: 32, fontWeight: 'bold', marginBottom: 5 },
   score: { fontSize: 24, fontWeight: 'bold', marginVertical: 5 },
-  button: { backgroundColor: '#D72638', padding: 10, borderRadius: 5, marginTop: 10 },
+  button: { backgroundColor: '#D72638', padding: 15, borderRadius: 5, marginTop: 10 },
   buttonSecondary: { backgroundColor: '#FFF', padding: 10, borderRadius: 5, marginTop: 10 },
   buttonText: { color: 'black', fontWeight: 'bold' },
   section: { marginTop: 20 },
