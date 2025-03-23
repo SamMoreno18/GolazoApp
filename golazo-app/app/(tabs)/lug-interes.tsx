@@ -35,7 +35,7 @@ const lugares: Lugar[] = [
   },
 ];
 
-export default function App() {
+export default function LugInteresantes() {
   const [searchText, setSearchText] = useState('');
 
   const filteredLugares = lugares.filter((lugar) =>
