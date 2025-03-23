@@ -105,7 +105,7 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#1F7D53', padding: 20 },
+  container: { backgroundColor: '#FFF', padding: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
   logo: { fontSize: 24, fontWeight: 'bold', color: '#D72638' },
   profileContainer: { width: 40, height: 40 },
