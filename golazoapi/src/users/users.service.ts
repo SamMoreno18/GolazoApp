@@ -7,6 +7,8 @@ import { transporter } from 'SMTP/transport';
 import { v4 as uuidv4 } from 'uuid';
 import 'dotenv/config';
 import { validationToken } from 'src/schemas/validationToken.schema';
+import * as bcrypt from "bcryptjs";
+import { userCredentialsDto } from 'src/dto/userCredentials.dto';
 
 @Injectable()
 export class UsersService {
@@ -15,10 +17,13 @@ export class UsersService {
 
     //Add new user to database
     async create(userDto: CreateUserDto): Promise<User> {
+        //Password encryption, current salt is 10 characters
+        const hashedPass = await bcrypt.hash(userDto.password, 10);
+
         const newUser = new this.userModel({
             _id: userDto._id,
             name: userDto.name,
-            password: userDto.password,
+            password: hashedPass,
             validated: false,
             creationDate: Date.now()
         });
@@ -26,7 +31,7 @@ export class UsersService {
     }
 
     async getUser(email){
-        return await this.userModel.findOne({_id: email}).exec();
+        return await this.userModel.findById(email).exec();
     }
 
     //Send the e-mail to validate new user registration
@@ -57,9 +62,10 @@ export class UsersService {
         }
     }
 
+    //Change the validated attribute of the account with the token
     async updateUserValid(token): Promise<boolean>{
         //Check email of the token
-        const item = await this.validationTModel.findOne({_id: token}).exec();
+        const item = await this.validationTModel.findById(token).exec();
         
         //Update validated state of the account
         const updated = await this.userModel.updateOne({_id: item?.email}, {validated: true}).exec();
@@ -72,4 +78,17 @@ export class UsersService {
             return false;
         }
     }
+
+    //Validate the input credentials
+    async validateLogin(credentials: userCredentialsDto): Promise<boolean>{
+        const account = await this.userModel.findById(credentials.email).exec();
+
+        if (account){
+            //True if passwords match
+            return bcrypt.compare(credentials.password, account.password);
+        }
+        else {
+            return false
+        }
+    } 
 }

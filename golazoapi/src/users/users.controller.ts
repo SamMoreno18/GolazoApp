@@ -1,10 +1,27 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from 'src/dto/create-user.dto';
+import { userCredentialsDto } from 'src/dto/userCredentials.dto';
 
 @Controller('users')
 export class UsersController {
     constructor(private readonly userService: UsersService) {}
+
+    //Log-in users using email and password
+    @Get('login')
+    async user_login(@Body() credentials: userCredentialsDto){
+        if (!Body){
+            throw new HttpException('No credentials input', HttpStatus.BAD_REQUEST);
+        }
+        
+        if (await this.userService.validateLogin(credentials)){
+            //Change for session creation
+            return "Login successful";
+        }
+        else {
+            return "Incorrect password"
+        }
+    }
 
     //Used to validate e-mails from tokens
     @Get('validate')
@@ -21,6 +38,7 @@ export class UsersController {
         }
     }
     
+    //Create user accounts
     @Post()
     async createUser(@Body() userData: CreateUserDto){
         //Validate e-mail input

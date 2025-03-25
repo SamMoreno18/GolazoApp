@@ -29,6 +29,7 @@
     "@nestjs/swagger": "^11.0.7",
     "@types/nodemailer": "^6.4.17",
     "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^16.4.7",
     "mongoose": "^8.12.1",
     "node-fetch": "^3.3.2",
