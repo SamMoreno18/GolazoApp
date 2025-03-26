@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';  // ✅ Importa ConfigModule correctamente
 import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleModule } from '@nestjs/schedule'; // ✅ Importamos ScheduleModule
@@ -14,6 +14,15 @@ import { ResultsModule } from './results/results.module';
 import { LodgingModule } from './lodging/lodging.module';
 import 'dotenv/config';
 
+import { JWTAuthorize } from './middleware/JWTAuthorization.middleware';
+import { ResultsController } from './results/results.controller';
+import { LodgingController } from './lodging/lodging.controller';
+import { MatchesController } from './matches/matches.controller';
+import { LocationsController } from './locations/locations.controller';
+import { RestaurantsController } from './restaurants/restaurants.controller';
+import { CarRentalController } from './car-rental/car-rental.controller';
+import { User, UserSchema } from './schemas/user.schema';
+
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),  // ✅ Configuración de variables de entorno
@@ -26,6 +35,7 @@ import 'dotenv/config';
     LocationsModule,
     RestaurantsModule,
     CarRentalModule,
+    MongooseModule.forFeature([{name: User.name, schema: UserSchema}]) //For user token authentication
   ],
   controllers: [
     AppController,
@@ -34,4 +44,19 @@ import 'dotenv/config';
     AppService,
   ],
 })
-export class AppModule {}
+
+//Require an authorization token for the following controllers
+export class AppModule implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+      consumer
+        .apply(JWTAuthorize)
+        .forRoutes(
+          ResultsController,
+          LodgingController,
+          MatchesController,
+          LocationsController,
+          RestaurantsController,
+          CarRentalController
+        )
+  }
+}

@@ -15,11 +15,11 @@ export class UsersController {
         }
         
         if (await this.userService.validateLogin(credentials)){
-            //Change for session creation
-            return "Login successful";
+            //Send a signed JWT so the user can be authorized
+            return this.userService.createJWT(credentials.email);
         }
         else {
-            return "Incorrect password"
+            return "Incorrect password";
         }
     }
 

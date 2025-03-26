@@ -8,7 +8,8 @@ declare global {
         OAUTH2CLIENTSECRET: string,
         OAUTH2REFRESHTOKEN: string,
         OAUTH2ACCESSTOKEN: string,
-        DOMAIN: string
+        DOMAIN: string,
+        JWTSECRET: string
       }
     }
   }
