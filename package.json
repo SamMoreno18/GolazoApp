@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@types/react": "^19.0.12"
+  },
+  "dependencies": {
+    "@react-native-picker/picker": "^2.11.0"
+  }
+}
