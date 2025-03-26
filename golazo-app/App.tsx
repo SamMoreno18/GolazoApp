@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomePage from './app/(tabs)';
 import LugInteresantes from './app/(tabs)/lug-interes';
+import "./global.css";
 
 const Drawer = createDrawerNavigator();
 
