@@ -32,7 +32,7 @@ export class JWTAuthorize implements NestMiddleware{
             }
 
             const user = await this.userModel.findById(decoded.id).exec();
-            if (!user){
+            if (!user || !user.validated){
                 throw new HttpException("User doesn't exist", HttpStatus.FORBIDDEN);
             }
 

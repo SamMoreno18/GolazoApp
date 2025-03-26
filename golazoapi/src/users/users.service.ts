@@ -84,13 +84,12 @@ export class UsersService {
     async validateLogin(credentials: userCredentialsDto): Promise<boolean>{
         const account = await this.getUser(credentials.email);
 
-        if (account){
-            //True if passwords match
-            return bcrypt.compare(credentials.password, account.password);
+        if (!account || !account.validated){
+            return false;
         }
-        else {
-            return false
-        }
+        
+        //True if passwords match
+        return bcrypt.compare(credentials.password, account.password);
     }
 
     //Create a JSON web token to authorize users
