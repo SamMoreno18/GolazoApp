@@ -9,6 +9,7 @@ import 'dotenv/config';
 import { validationToken } from 'src/schemas/validationToken.schema';
 import * as bcrypt from "bcryptjs";
 import { userCredentialsDto } from 'src/dto/userCredentials.dto';
+import * as jwt from 'jwt-simple';
 
 @Injectable()
 export class UsersService {
@@ -81,14 +82,23 @@ export class UsersService {
 
     //Validate the input credentials
     async validateLogin(credentials: userCredentialsDto): Promise<boolean>{
-        const account = await this.userModel.findById(credentials.email).exec();
+        const account = await this.getUser(credentials.email);
 
-        if (account){
-            //True if passwords match
-            return bcrypt.compare(credentials.password, account.password);
+        if (!account || !account.validated){
+            return false;
         }
-        else {
-            return false
+        
+        //True if passwords match
+        return bcrypt.compare(credentials.password, account.password);
+    }
+
+    //Create a JSON web token to authorize users
+    createJWT(email: string){
+        const payload = {
+            id: email,
+            creationDate: Date.now()
         }
-    } 
+
+        return jwt.encode(payload, process.env.JWTSECRET);
+    }
 }
