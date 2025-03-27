@@ -20,6 +20,7 @@ import { LodgingController } from './lodging/lodging.controller';
 import { MatchesController } from './matches/matches.controller';
 import { LocationsController } from './locations/locations.controller';
 import { RestaurantsController } from './restaurants/restaurants.controller';
+import { TeamModule } from './team/team.module';
 import { CarRentalController } from './car-rental/car-rental.controller';
 import { User, UserSchema } from './schemas/user.schema';
 
@@ -31,6 +32,7 @@ import { User, UserSchema } from './schemas/user.schema';
     ScheduleModule.forRoot(), // ✅ Activamos la funcionalidad de cron jobs
     LodgingModule,
     UsersModule,
+    TeamModule,
     MatchesModule,
     LocationsModule,
     RestaurantsModule,
