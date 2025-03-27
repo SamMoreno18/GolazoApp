@@ -9,7 +9,8 @@ declare global {
         OAUTH2REFRESHTOKEN: string,
         OAUTH2ACCESSTOKEN: string,
         DOMAIN: string,
-        JWTSECRET: string
+        JWTSECRET: string,
+        API_FOOTBALL_KEY: string
       }
     }
   }

@@ -13,6 +13,8 @@ export class JWTAuthorize implements NestMiddleware{
     constructor(@InjectModel(User.name) private userModel: Model<User>){}
 
     async use(req: Request, res: Response, next: NextFunction){
+    
+        //Skip authorization by commenting all this code, ONLY FOR TESTING
         const JWT = req.headers['authorization'];
         if (!JWT){
             throw new HttpException('No authorization provided', HttpStatus.FORBIDDEN);
@@ -36,7 +38,7 @@ export class JWTAuthorize implements NestMiddleware{
                 throw new HttpException("User doesn't exist", HttpStatus.FORBIDDEN);
             }
 
-            next();
+            next(); //Don't comment this one!
         }
 
         catch {
