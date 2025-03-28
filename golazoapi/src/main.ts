@@ -1,7 +1,7 @@
-
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { CustomHeadersInterceptor } from './app.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +17,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT || 3000);
+  app.useGlobalInterceptors(new CustomHeadersInterceptor());
 }
 
 bootstrap();
