@@ -9,6 +9,8 @@ import { UsersModule } from './users/users.module';
 import { MatchesModule } from './matches/matches.module';
 import { LocationsModule } from './locations/locations.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
+import { TeamModule } from './team/team.module';
+import { LeagueModule } from './league/league.module';
 import { CarRentalModule } from './car-rental/car-rental.module';
 import { ResultsModule } from './results/results.module';
 import { LodgingModule } from './lodging/lodging.module';
@@ -20,7 +22,6 @@ import { LodgingController } from './lodging/lodging.controller';
 import { MatchesController } from './matches/matches.controller';
 import { LocationsController } from './locations/locations.controller';
 import { RestaurantsController } from './restaurants/restaurants.controller';
-import { TeamModule } from './team/team.module';
 import { CarRentalController } from './car-rental/car-rental.controller';
 import { User, UserSchema } from './schemas/user.schema';
 
@@ -36,8 +37,9 @@ import { User, UserSchema } from './schemas/user.schema';
     MatchesModule,
     LocationsModule,
     RestaurantsModule,
+    LeagueModule,
     CarRentalModule,
-    MongooseModule.forFeature([{name: User.name, schema: UserSchema}]) //For user token authentication
+    MongooseModule.forFeature([{name: User.name, schema: UserSchema}]),
   ],
   controllers: [
     AppController,
