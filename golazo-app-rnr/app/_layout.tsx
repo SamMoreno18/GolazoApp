@@ -16,6 +16,8 @@ import Turismo from './(drawer)/turismo';
 import Hoteles from './(drawer)/hoteles';
 import Perfil from './(drawer)/perfil';
 import Transporte from './(drawer)/transporte';
+import Login from './(drawer)/login';
+import CrearCuenta from './(drawer)/crear-cuenta';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -70,6 +72,8 @@ export default function RootLayout() {
       <Drawer.Screen name="Buscar Hoteles" component={Hoteles} />
       <Drawer.Screen name="Rutas de Transporte" component={Transporte} />
       <Drawer.Screen name="Mi perfil" component={Perfil} />
+      <Drawer.Screen name="Login" component={Login} />
+      <Drawer.Screen name="Crear cuenta" component={CrearCuenta} />
     </Drawer.Navigator>
   );
 }
