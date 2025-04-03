@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import {
     Card,
     CardContent,
@@ -13,11 +14,15 @@ import { View } from 'react-native';
 import { Input } from '~/components/ui/input';
 
 export default function CrearCuenta() {
-    const [value, setValue] = React.useState('');
+    // funciones de useForm para manejar los estados del formulario
 
-    const onChangeText = (text: string) => {
-        setValue(text);
-    };
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    console.log(errors)
+
+    // al hacer clic en el botón de "Crear mi cuenta", el formulario recupera la información y la envía
+    const enviarInfo = handleSubmit((data) => {
+        console.log(data)
+    })
 
     return (
         <View className='flex-1 items-center justify-center p-6'>
@@ -26,75 +31,89 @@ export default function CrearCuenta() {
                     <CardTitle className='text-slate-700'>Crea una cuenta aquí</CardTitle>
                     <CardDescription className='text-slate-500 text-base font-normal'>¡Únete y vive la experiencia completa del Mundial!</CardDescription>
                 </CardHeader>
-                <CardContent className='p-10 flex flex-col gap-6'>
-                    <div className='campo1 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Nombre de usuario</Text>
-                        <Input
-                            placeholder='Nuevo nombre de usuario'
-                            value={value}
-                            onChangeText={onChangeText}
-                            aria-labelledby='inputLabel'
-                            aria-errormessage='inputError'
-                            className='w-full'
+                <CardContent className='p-10'>
+                    <form onSubmit={enviarInfo} className='flex flex-col'>
+                        <label htmlFor='nombre' className='mb-1 text-sm font-medium text-slate-500'>Nombre:</label>
+                        <input type="text" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("nombre", {
+                                required: true
+                            })}
                         />
-                    </div>
-                    <div className='campo2 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Nombre completo</Text>
-                        <div className="grid grid-cols-2 gap-3">
-                            <Input
-                                placeholder='Nombre'
-                                value={value}
-                                onChangeText={onChangeText}
-                                aria-labelledby='inputLabel'
-                                aria-errormessage='inputError'
-                                className='w-full'
-                            />
-                            <Input
-                                placeholder='Apellido'
-                                value={value}
-                                onChangeText={onChangeText}
-                                aria-labelledby='inputLabel'
-                                aria-errormessage='inputError'
-                                className='w-full'
-                            />
-                        </div>
-                    </div>
-                    <div className='campo3 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Correo electrónico</Text>
-                        <Input
-                            placeholder='ejemplo@direccion.com'
-                            value={value}
-                            onChangeText={onChangeText}
-                            aria-labelledby='inputLabel'
-                            aria-errormessage='inputError'
-                            className='w-full'
+                        {
+                            errors.nombre && <span className='text-red-400 font-medium text-xs mb-3'>Por favor inserta tu nombre.</span>
+                        }
+
+                        <label className='mb-1 text-sm font-medium text-slate-500'>Correo electrónico:</label>
+                        <input type="email" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("correo", {
+                                required: {
+                                    value: true,
+                                    message: "Correo es requerido"
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                    message: "Correo no válido"
+                                }
+                            })}
                         />
-                    </div>
-                    <div className='campo4 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Contraseña</Text>
-                        <div className="grid grid-cols-2 gap-3">
-                            <Input
-                                placeholder='Nueva contraseña'
-                                value={value}
-                                onChangeText={onChangeText}
-                                aria-labelledby='inputLabel'
-                                aria-errormessage='inputError'
-                                className='w-full'
-                            />
-                            <Input
-                                placeholder='Confirmar contraseña'
-                                value={value}
-                                onChangeText={onChangeText}
-                                aria-labelledby='inputLabel'
-                                aria-errormessage='inputError'
-                                className='w-full'
-                            />
-                        </div>
-                    </div>
+                        {
+                            typeof errors.correo?.message === 'string' && (
+                                <span className='text-red-400 font-medium text-xs mb-3'>
+                                    {errors.correo.message}
+                                </span>
+                            )
+                        }
+
+                        <label className='mb-1 text-sm font-medium text-slate-500'>Contraseña:</label>
+                        <input type="password" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("contraseña", {
+                                required: {
+                                    value: true,
+                                    message: "La contraseña es requerida."
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: "La contraseña debe ser de al menos 6 dígitos"
+                                },
+                            })}
+                        />
+                        {
+                            typeof errors.contraseña?.message === 'string' && (
+                                <span className='text-red-400 font-medium text-xs mb-3'>
+                                    {errors.contraseña.message}
+                                </span>
+                            )
+                        }
+
+                        <label className='mb-1 text-sm font-medium text-slate-500'>Confirma contraseña:</label>
+                        <input type="password" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("confirmarContraseña", {
+                                required: {
+                                    value: true,
+                                    message: "Por favor la contraseña que ingresaste."
+                                },
+                                validate: (value) => {
+                                    if (value === watch('contraseña')) {
+                                        return true
+                                    } else {
+                                        return "Las contraseñas no coinciden."
+                                    }
+                                }
+                            })}
+                        />
+                        {
+                            typeof errors.confirmarContraseña?.message === 'string' && (
+                                <span className='text-red-400 font-medium text-xs mb-3'>
+                                    {errors.confirmarContraseña.message}
+                                </span>
+                            )
+                        }
+
+                        <button type="submit" className='py-2 mt-4 bg-red-500 text-white font-medium rounded-md'>Crear mi cuenta</button>
+                        
+                        {/* {JSON.stringify(watch(), null, 2)}*/}
+                    </form>
                 </CardContent>
-                <CardFooter className='flex flex-col gap-2 p-10 pt-0'>
-                    <Button className='bg-red-500 text-white w-full max-w-[200px]'>Crear una cuenta</Button>
-                </CardFooter>
             </Card>
         </View>
     )

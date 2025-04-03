@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import {
     Card,
     CardContent,
@@ -13,11 +14,13 @@ import { View } from 'react-native';
 import { Input } from '~/components/ui/input';
 
 export default function Login() {
-    const [value, setValue] = React.useState('');
+    // funciones de useForm para manejar los estados del formulario
+    const { register, handleSubmit } = useForm();
 
-    const onChangeText = (text: string) => {
-        setValue(text);
-    };
+    // al hacer clic en el botón de "Crear mi cuenta", el formulario recupera la información y la envía
+    const enviarInfo = handleSubmit((data) => {
+        console.log(data)
+    })
 
     return (
         <View className='flex-1 items-center justify-center p-6'>
@@ -26,35 +29,25 @@ export default function Login() {
                     <CardTitle className='text-white'>¡Hola!</CardTitle>
                     <CardDescription className='text-white text-base'>Bienvenido de vuelta</CardDescription>
                 </CardHeader>
-                <CardContent className='p-10 flex flex-col gap-6'>
-                    <div className='campo1 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Username</Text>
-                        <Input
-                            placeholder='Username'
-                            value={value}
-                            onChangeText={onChangeText}
-                            aria-labelledby='inputLabel'
-                            aria-errormessage='inputError'
-                            className='w-full'
-                        />
-                    </div>
-                    <div className='campo1 flex flex-col gap-1'>
-                        <Text className='text-sm font-medium text-gray-500'>Contraseña</Text>
-                        <Input
-                            placeholder='Contraseña'
-                            value={value}
-                            onChangeText={onChangeText}
-                            aria-labelledby='inputLabel'
-                            aria-errormessage='inputError'
-                            className='w-full'
-                        />
-                    </div>
+                <CardContent className='p-10 flex'>
+                    <form onSubmit={enviarInfo} className='flex flex-col'>
+                        <label className='mb-1 text-sm font-medium text-slate-500'>Correo electrónico:</label>
+                        <input type="email" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("correo", {
+                                required: true
+                            })} />
+
+                        <label className='mb-1 text-sm font-medium text-slate-500'>Contraseña:</label>
+                        <input type="password" className="mb-3 w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300"
+                            {...register("contraseña", {
+                                required: true
+                            })} />
+
+                        <button type="submit" className='py-2 mt-4 bg-red-500 text-white font-medium rounded-md w-full max-w-[200px] self-center'>Iniciar sesión</button>
+                    </form>
+                    <p className='self-center'>o</p>
+                    <Button className='bg-white text-red-500 border-2 border-red-500 w-full max-w-[200px] self-center'>Crear una cuenta</Button>
                 </CardContent>
-                <CardFooter className='flex flex-col gap-2 p-10 pt-0'>
-                    <Button className='bg-red-500 text-white w-full max-w-[200px]'>Iniciar sesión</Button>
-                    <p>o</p>
-                    <Button className='bg-white text-red-500 border-2 border-red-500 w-full max-w-[200px]'>Crear una cuenta</Button>
-                </CardFooter>
             </Card>
         </View>
     )
