@@ -11,12 +11,12 @@ import { PortalHost } from '@rn-primitives/portal';
 import { ThemeToggle } from '~/components/ThemeToggle';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Screen from './(drawer)';
+import Login from './(drawer)/login';
 import Turismo from './(drawer)/turismo';
 import Hoteles from './(drawer)/hoteles';
 import Perfil from './(drawer)/perfil';
 import Transporte from './(drawer)/transporte';
-import Login from './(drawer)/login';
+import Screen from './(drawer)';
 import CrearCuenta from './(drawer)/crear-cuenta';
 
 const LIGHT_THEME: Theme = {
