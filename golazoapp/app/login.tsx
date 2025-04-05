@@ -1,4 +1,5 @@
 import React from 'react';
+import { router } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import {
     Card,
@@ -11,8 +12,10 @@ import {
 import { Text } from '~/components/ui/text';
 import { Button } from '~/components/ui/button';
 import { View } from 'react-native';
+import { useSession } from '../ctx';
 
 export default function Login() {
+    const { signIn } = useSession();
     // funciones de useForm para manejar los estados del formulario
     const { register, handleSubmit } = useForm();
 
@@ -42,7 +45,15 @@ export default function Login() {
                                 required: true
                             })} />
 
-                        <button type="submit" className='py-2 mt-4 bg-red-500 text-white font-medium rounded-md w-full max-w-[200px] self-center'>Iniciar sesión</button>
+                        <Text
+                            onPress={() => {
+                                signIn();
+                                // Navigate after signing in. You may want to tweak this to ensure sign-in is
+                                // successful before navigating.
+                                router.replace('/');
+                            }}>
+                            Sign In
+                        </Text>
                     </form>
                     <p className='self-center'>o</p>
                     <Button className='bg-white text-red-500 border-2 border-red-500 w-full max-w-[200px] self-center'>Crear una cuenta</Button>

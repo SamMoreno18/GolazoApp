@@ -17,11 +17,14 @@ import {
 import { Progress } from '~/components/ui/progress';
 import { Text } from '~/components/ui/text';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
+import { useSession } from '../../ctx'
 
 const GITHUB_AVATAR_URI =
   'https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg';
 
 export default function Screen() {
+  const { signOut } = useSession();
+  
   const [progress, setProgress] = React.useState(78);
 
   function updateProgressValue() {
@@ -30,6 +33,13 @@ export default function Screen() {
   return (
     <ScrollView>
       <View className='flex-1 justify-left items-left gap-5 md:p-12 sm:p-8 p-6 bg-secondary/30'>
+        <Text
+          onPress={() => {
+            // The `app/(app)/_layout.tsx` will redirect to the sign-in screen.
+            signOut();
+          }}>
+          Sign Out
+        </Text>
         <div className="saludo-usuario flex flex-col">
           <p className='text-3xl font-medium mb-1'>Hola, Marco</p>
           <p className='text-lg font-normal text-slate-400 m-0'>¡Bienvenido de vuelta!</p>
