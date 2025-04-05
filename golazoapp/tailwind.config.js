@@ -42,9 +42,6 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      fontFamily: {
-        manrope: ['Manrope_400Regular', 'Manrope_700Bold'],
-      },
       borderWidth: {
         hairline: hairlineWidth(),
       },
@@ -64,7 +61,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'),
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [require('tailwindcss-animate')],
 };

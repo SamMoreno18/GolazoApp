@@ -11,7 +11,6 @@ import {
 import { Text } from '~/components/ui/text';
 import { Button } from '~/components/ui/button';
 import { View } from 'react-native';
-import { Input } from '~/components/ui/input';
 
 export default function CrearCuenta() {
     // funciones de useForm para manejar los estados del formulario
