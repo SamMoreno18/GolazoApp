@@ -29,6 +29,7 @@ export default function LoginScreen() {
     };
 
     const handleCreateAccount = () => {
+        (navigation as any).navigate('Crear cuenta'); 
     };
 
     return (
