@@ -9,14 +9,14 @@ import {
 } from '~/components/ui/card';
 import { Text } from '~/components/ui/text';
 import { Button } from '~/components/ui/button';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { Tooltip, TooltipContent, TooltipTrigger } from '~/components/ui/tooltip';
 import { useSession } from '../../ctx'
 import { ScrollView } from 'react-native-gesture-handler';
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar';
 
 const GITHUB_AVATAR_URI =
-  'https://i.pinimg.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg';
+  'https://i.pinImage.com/originals/ef/a2/8d/efa28d18a04e7fa40ed49eeb0ab660db.jpg';
 
 export default function Screen() {
   const { signOut } = useSession();
@@ -26,34 +26,27 @@ export default function Screen() {
   function updateProgressValue() {
     setProgress(Math.floor(Math.random() * 100));
   }
+
   return (
     <ScrollView>
       <View className='flex-1 justify-left items-left gap-5 md:p-12 sm:p-8 p-6 bg-secondary/30'>
+        <Text onPress={() => signOut()}>Sign Out</Text>
 
-        <Text
-          onPress={() => {
-            // The `app/(app)/_layout.tsx` will redirect to the sign-in screen.
-            signOut();
-          }}>
-          Sign Out
-        </Text>
+        <View className="saludo-usuario flex flex-col">
+          <Text className='text-3xl font-medium mb-1'>Hola, Marco</Text>
+          <Text className='text-lg font-normal text-slate-400 m-0'>¡Bienvenido de vuelta!</Text>
+        </View>
 
-        <div className="saludo-usuario flex flex-col">
-          <p className='text-3xl font-medium mb-1'>Hola, Marco</p>
-          <p className='text-lg font-normal text-slate-400 m-0'>¡Bienvenido de vuelta!</p>
-        </div>
-
-        <div className="linea1 grid md:grid-cols-2 grid-cols-1 w-full gap-4">
-          <Card className="">
+        <View className="linea1 grid md:grid-cols-2 grid-cols-1 w-full gap-4">
+          <Card>
             <CardHeader>
               <CardTitle>Juego en vivo</CardTitle>
               <CardDescription>¡Observa el partido que está jugándose ahora mismo!</CardDescription>
             </CardHeader>
             <CardContent>
-              <img
+              <Image
                 className="w-full h-[250px] object-cover rounded-lg mb-4"
-                src="https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/estadio1.jpg"
-                alt="Partido en vivo"
+                source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/estadio1.jpg' }}
               />
             </CardContent>
             <CardFooter>
@@ -107,9 +100,6 @@ export default function Screen() {
                   <Text className="mt-1 text-xl font-semibold">China</Text>
                 </View>
               </View>
-
-              {/* agregar más partidos aquí: */}
-
             </CardContent>
             <CardFooter>
               <Button className='bg-red-500'>
@@ -117,37 +107,33 @@ export default function Screen() {
               </Button>
             </CardFooter>
           </Card>
-        </div>
+        </View>
 
-        <div className="linea2 grid md:grid-cols-2 grid-cols-1 w-full gap-4">
+        <View className="linea2 grid md:grid-cols-2 grid-cols-1 w-full gap-4">
           <Card className="w-full h-auto">
             <CardHeader>
               <CardTitle>Los más recientes</CardTitle>
               <CardDescription>¡Por si te perdiste alguno!</CardDescription>
             </CardHeader>
             <CardContent className="w-full">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <img
+              <View className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Image
                   className="w-full h-[200px] object-cover rounded-lg"
-                  src="https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido3.jpg"
-                  alt="Partido 3"
+                  source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido3.jpg' }}
                 />
-                <img
+                <Image
                   className="w-full h-[200px] object-cover rounded-lg"
-                  src="https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido2.jpg"
-                  alt="Partido 2"
+                  source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido2.jpg' }}
                 />
-                <img
+                <Image
                   className="w-full h-[200px] object-cover rounded-lg"
-                  src="https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido6.jpg"
-                  alt="Partido 6"
+                  source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido6.jpg' }}
                 />
-                <img
+                <Image
                   className="w-full h-[200px] object-cover rounded-lg"
-                  src="https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido4.jpg"
-                  alt="Partido 4"
+                  source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Partidos/partido4.jpg' }}
                 />
-              </div>
+              </View>
             </CardContent>
             <CardFooter>
               <Button className='bg-red-500'>
@@ -156,14 +142,13 @@ export default function Screen() {
             </CardFooter>
           </Card>
 
-
-
-          <Card className=''>
+          <Card>
             <CardHeader>
               <CardTitle>Próximos eventos</CardTitle>
               <CardDescription>Conoce los partidos que jugarán el día de hoy</CardDescription>
             </CardHeader>
             <CardContent className='flex flex-col gap-4'>
+
               {/* Partido Albania vs Armenia */}
               <View className="flex flex-row items-center justify-center gap-4">
                 <View className="items-center">
@@ -227,12 +212,12 @@ export default function Screen() {
                 </View>
               </View>
 
-                            {/* Partido China vs España */}
-                            <View className="flex flex-row items-center justify-center gap-4">
+              {/* Partido México vs Estados Unidos */}
+              <View className="flex flex-row items-center justify-center gap-4">
                 <View className="items-center">
-                  <Avatar className="w-16 h-16" alt="Bandera de China">
+                  <Avatar className="w-16 h-16" alt="Bandera de México">
                     <AvatarImage source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Equipos/mexico.png' }} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>MX</AvatarFallback>
                   </Avatar>
                   <Text className="mt-1 text-sm font-semibold">México</Text>
                 </View>
@@ -240,13 +225,14 @@ export default function Screen() {
                 <Text className="text-xl font-bold">VS</Text>
 
                 <View className="items-center">
-                  <Avatar className="w-16 h-16" alt="Bandera de España">
+                  <Avatar className="w-16 h-16" alt="Bandera de Estados Unidos">
                     <AvatarImage source={{ uri: 'https://raw.githubusercontent.com/kevtorres23/GolazoAppImages/main/Equipos/usa.png' }} />
-                    <AvatarFallback>ES</AvatarFallback>
+                    <AvatarFallback>US</AvatarFallback>
                   </Avatar>
                   <Text className="mt-1 text-sm font-semibold">Estados Unidos</Text>
                 </View>
               </View>
+
             </CardContent>
             <CardFooter>
               <Button className='bg-red-500'>
@@ -254,7 +240,7 @@ export default function Screen() {
               </Button>
             </CardFooter>
           </Card>
-        </div>
+        </View>
       </View>
     </ScrollView>
   );
