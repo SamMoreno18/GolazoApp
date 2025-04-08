@@ -45,7 +45,7 @@ export default function Login() {
                                 required: true
                             })} />
 
-                        <Text
+                        <Text className='bg-white text-center rounded-md py-1.5 text-white border-none bg-red-500 w-full max-w-[200px] self-center'
                             onPress={() => {
                                 signIn();
                                 // Navigate after signing in. You may want to tweak this to ensure sign-in is
